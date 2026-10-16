@@ -2,12 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* 
-
-HE DE ACLARAR QUE CUALQUIER PARECIDO CON EL EJEMPLO DEL INVENTARIO
-Y CON EL TRABAJO DE LA BATALLA NAVAL SON PURAS COINCIDENCIAS :D
-
-*/
 // Definicion de constantes para las opciones del menu... las "macros"
 
 #define OPCION_INGRESAR 1
