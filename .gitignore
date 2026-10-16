@@ -37,14 +37,21 @@ void ingresarMaquina(Maquina *maquina) {
 	scanf("%f", &maquina->corriente);
 }
 
-void Maximos(Maquina *bandera, int cantidad, int opcion) {
+/**
+ * Calcula y muestra los dos valores maximos de tension o corriente entre las maquinas cargadas
+ * @param lista_maquinas puntero al arreglo dinamico de maquinas
+ * @param cantidad numero actual de maquinas cargadas
+ * @param opcion criterio de busqueda 1 = tension 2 = corriente
+ */
+
+void Maximos(Maquina *lista_maquinas, int cantidad, int opcion) {
 	
 	float max1 = -1, max2 = -1;
 	int indice1 = -1, indice2 = -1;
 	
 	for (int i = 0; i < cantidad; i++) {
 		
-		float valor = (opcion == 1) ? bandera[i].tension : bandera[i].corriente;
+		float valor = (opcion == 1) ? lista_maquinas[i].tension : lista_maquinas[i].corriente;
 		
 		if (valor > max1) {
 			max2 = max1; 
@@ -60,14 +67,14 @@ void Maximos(Maquina *bandera, int cantidad, int opcion) {
 	printf("\nMaximos:\n");
 	
 	if (indice1 != -1) {
-		printf("1º: %s -> %.2f\n", bandera[indice1].nombre, (opcion == 1) ? bandera[indice1].tension : bandera[indice1].corriente);
+		printf("1º: %s -> %.2f\n", lista_maquinas[indice1].nombre, (opcion == 1) ? lista_maquinas[indice1].tension : lista_maquinas[indice1].corriente);
 	}
 	if (indice2 != -1) {
-		printf("2º: %s -> %.2f\n", bandera[indice2].nombre, (opcion == 1) ? bandera[indice2].tension : bandera[indice2].corriente);
+		printf("2º: %s -> %.2f\n", lista_maquinas[indice2].nombre, (opcion == 1) ? lista_maquinas[indice2].tension : lista_maquinas[indice2].corriente);
 	}
 }
 
-//Aca bandera por lista_maquinas... me habia quedado sin ideas
+//Aca bandera por lista_maquinas... me habia quedado sin ideas entonces fue mas poner por poner
 
 void mostrarLista(Maquina *lista_maquinas, int cantidad) {
 	
@@ -82,7 +89,13 @@ void mostrarLista(Maquina *lista_maquinas, int cantidad) {
 	}
 }
 
-void buscarMaquina(Maquina *bandera, int cantidad) {
+/**
+ * Permite buscar una maquina dentro del arreglo por diferentes criterios
+ * @param lista_maquinas puntero al arreglo dinamico de maquinas
+ * @param cantidad numero actual de maquinas cargadas
+ */
+
+void buscarMaquina(Maquina *lista_maquinas, int cantidad) {
 	
 	if (cantidad == 0) {
 		printf("No hay maquinas cargadas.\n");
@@ -101,9 +114,9 @@ void buscarMaquina(Maquina *bandera, int cantidad) {
 		scanf(" %[^\n]", nombre);
 		
 		for (int i = 0; i < cantidad; i++) {
-			if (strcmp(bandera[i].nombre, nombre) == 0) {
+			if (strcmp(lista_maquinas[i].nombre, nombre) == 0) {
 				printf("Encontrado: %s | Tensión: %.2f V | Corriente: %.2f A\n",
-					   bandera[i].nombre, bandera[i].tension, bandera[i].corriente);
+					   lista_maquinas[i].nombre, lista_maquinas[i].tension, lista_maquinas[i].corriente);
 				return;
 			}
 		}
@@ -117,9 +130,9 @@ void buscarMaquina(Maquina *bandera, int cantidad) {
 		scanf("%f", &valor);
 		
 		for (int i = 0; i < cantidad; i++) {
-			if (bandera[i].tension == valor) {
+			if (lista_maquinas[i].tension == valor) {
 				printf("Encontrado: %s | Tensión: %.2f V | Corriente: %.2f A\n",
-					   bandera[i].nombre, bandera[i].tension, bandera[i].corriente);
+					   lista_maquinas[i].nombre, lista_maquinas[i].tension, lista_maquinas[i].corriente);
 				return;
 			}
 		}
@@ -131,9 +144,9 @@ void buscarMaquina(Maquina *bandera, int cantidad) {
 		scanf("%f", &valor);
 		
 		for (int i = 0; i < cantidad; i++) {
-			if (bandera[i].corriente == valor) {
+			if (lista_maquinas[i].corriente == valor) {
 				printf("Encontrado: %s | Tension: %.2f V | Corriente: %.2f A\n",
-					   bandera[i].nombre, bandera[i].tension, bandera[i].corriente);
+					   lista_maquinas[i].nombre, lista_maquinas[i].tension, lista_maquinas[i].corriente);
 				return;
 			}
 		}
