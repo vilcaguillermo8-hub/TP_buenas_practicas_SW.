@@ -8,7 +8,13 @@ HE DE ACLARAR QUE CUALQUIER PARECIDO CON EL EJEMPLO DEL INVENTARIO
 Y CON EL TRABAJO DE LA BATALLA NAVAL SON PURAS COINCIDENCIAS :D
 
 */
+// Definicion de constantes para las opciones del menu... las "macros"
 
+#define OPCION_INGRESAR 1
+#define OPCION_MAXIMOS  2
+#define OPCION_MOSTRAR  3
+#define OPCION_BUSCAR   4
+#define OPCION_SALIR    5
 
 typedef struct {
 	
@@ -18,14 +24,17 @@ typedef struct {
 	
 } Maquina;
 
-void ingresarMaquina(Maquina *m) {
+//Cambio el nombre de algunas variables m -> maquina
+// Por lo general lo hago por tiempos o comodidad pero si es verdad que despues termino un poco perdido
+
+void ingresarMaquina(Maquina *maquina) {
 	
 	printf("Ingrese nombre de la maquina: ");
-	scanf(" %[^\n]", m->nombre);
+	scanf(" %[^\n]", maquina->nombre);
 	printf("Ingrese tension (V): ");
-	scanf("%f", &m->tension);
+	scanf("%f", &maquina->tension);
 	printf("Ingrese corriente (A): ");
-	scanf("%f", &m->corriente);
+	scanf("%f", &maquina->corriente);
 }
 
 void Maximos(Maquina *bandera, int cantidad, int opcion) {
@@ -58,7 +67,9 @@ void Maximos(Maquina *bandera, int cantidad, int opcion) {
 	}
 }
 
-void mostrarLista(Maquina *bandera, int cantidad) {
+//Aca bandera por lista_maquinas... me habia quedado sin ideas
+
+void mostrarLista(Maquina *lista_maquinas, int cantidad) {
 	
 	if (cantidad == 0) {
 		printf("No hay maquinas cargadas.\n");
@@ -67,7 +78,7 @@ void mostrarLista(Maquina *bandera, int cantidad) {
 	printf("\nLista completa:\n");
 	for (int i = 0; i < cantidad; i++) {
 		printf("%d) Nombre: %s | Tensión: %.2f V | Corriente: %.2f A\n",
-			   i+1, bandera[i].nombre, bandera[i].tension, bandera[i].corriente);
+			   i+1, lista_maquinas[i].nombre, lista_maquinas[i].tension, lista_maquinas[i].corriente);
 	}
 }
 
@@ -184,7 +195,6 @@ int main() {
 			printf("Opción inválida.\n");
 		}
 	} while (opcion != 6);
-	
 	free(maquinas);
 	return 0;
 }
