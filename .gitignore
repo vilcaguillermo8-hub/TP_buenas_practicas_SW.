@@ -176,7 +176,7 @@ int main() {
 		
 		switch (opcion) {
 			
-		case 1:
+		case OPCION_INGRESAR:
 			cantidad++;
 			maquinas = (Maquina*) realloc(maquinas, cantidad * sizeof(Maquina));
 			if (maquinas == NULL) {
@@ -185,7 +185,7 @@ int main() {
 			}
 			ingresarMaquina(&maquinas[cantidad - 1]);
 			break;
-		case 2:
+		case OPCION_MAXIMOS:
 			if (cantidad == 0) {
 				printf("No hay datos cargados.\n");
 			} else {
@@ -195,19 +195,19 @@ int main() {
 				Maximos(maquinas, cantidad, var);
 			}
 			break;
-		case 3:
+		case OPCION_MOSTRAR:
 			mostrarLista(maquinas, cantidad);
 			break;
-		case 4:
+		case OPCION_BUSCAR:
 			buscarMaquina(maquinas, cantidad);
 			break;
-		case 5:
+		case OPCION_SALIR:
 			printf("Saliendo...\n");
 			break;
 		default:
 			printf("Opción inválida.\n");
 		}
-	} while (opcion != 6);
+	} while (opcion != OPCION_SALIR); //Habia un 6 en lugar de 5...
 	free(maquinas);
 	return 0;
 }
